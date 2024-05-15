@@ -9,31 +9,28 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium import webdriver
 
-
 class TestChangeSection:
 
     def test_change_on_sauces(self, driver, login_for_change_section):
         driver.get(URL+"/login")
-        login_for_change_section()
+        login_for_change_section(email, password) # Логин
         driver.find_element(*ChangeSection.SAUCES_SECTION).click()
-        WebDriverWait(driver, 3).until(expected_conditions.presence_of_element_located((By.XPATH,"//div[2][contains(@class, 'tab_tab_type_current__2BEPc')]")))
+        assert driver.find_element(*ChangeSection.SAUCES_SECTION) in (driver.find_element(*ChangeSection.ACTIVATED_SECTION)).find_elements(By.XPATH, ".//*") # Проверяем что раздел "Соусы" активен
 
     def test_change_on_fillings(self, driver, login_for_change_section):
         driver.get(URL+"/login")
-        login_for_change_section()
+        login_for_change_section(email, password) # Логин
         driver.find_element(*ChangeSection.FILLINGS_SECTION).click()
-        WebDriverWait(driver, 3).until(expected_conditions.presence_of_element_located((By.XPATH,"//div[3][contains(@class, 'tab_tab_type_current__2BEPc')]")))
+        assert driver.find_element(*ChangeSection.FILLINGS_SECTION) in (driver.find_element(*ChangeSection.ACTIVATED_SECTION)).find_elements(By.XPATH, ".//*") # Проверяем что раздел "Начинки" активен
 
-    def test_change_on_buns(self, driver, login_for_change_section): #тут надо учесть чт омы по умолчанию находимя в этомр азделе и надо сходит ьв другой сначала
+    def test_change_on_buns(self, driver, login_for_change_section): #тут надо учесть что мы по умолчанию находимя в этом разделе и надо сходить в другой сначала
         driver.get(URL + "/login")
-        login_for_change_section()
+        login_for_change_section(email, password) # Логин
         # переключаем на соусы т.к. по умолчанию будут булки
         driver.find_element(*ChangeSection.SAUCES_SECTION).click()
         # переключаем на булки
         driver.find_element(*ChangeSection.BUNS_SECTION).click()
-        WebDriverWait(driver, 3).until(expected_conditions.presence_of_element_located((By.XPATH, "//div[1][contains(@class, 'tab_tab_type_current__2BEPc')]")))
-
-
+        assert driver.find_element(*ChangeSection.BUNS_SECTION) in (driver.find_element(*ChangeSection.ACTIVATED_SECTION)).find_elements(By.XPATH, ".//*") # Проверяем что раздел "Булки" активен
 
 
 
