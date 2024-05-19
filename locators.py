@@ -72,3 +72,4 @@ class ChangeSection:
     BUNS_SECTION = (By.XPATH, "//span[contains(text(), 'Булки')]")
 # Локатор признака активности выбранного раздела
     ACTIVATED_SECTION = (By.XPATH, "//div[contains(@class, 'tab_tab_type_current__2BEPc')]")
+    IN_ACTIV = (By.XPATH, ".//*")

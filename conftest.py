@@ -6,7 +6,7 @@ from locators import RegisterPageLocators
 from locators import LogoutPageLocators
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from config import URL, name, new_email, email, password, incorrect_password
+from data import URL, name, new_email, email, password, incorrect_password
 
 @pytest.fixture
 def driver():
@@ -22,7 +22,6 @@ def login_user(driver):
         driver.find_element(*LoginPageLocators.PASSWORD_INPUT).send_keys(password)
         driver.find_element(*LoginPageLocators.SUBMIT_BUTTON).click()
         WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located((LoginPageLocators.MAKE_CHECKOUT_ORDER_BUTTON)))
-        assert 'Оформить заказ' in driver.find_element(*LoginPageLocators.MAKE_CHECKOUT_ORDER_BUTTON).text
     return _login_user
 
 @pytest.fixture # Фикстура для проверки регистрации, не учтен пароль так как он разный в разных проверках

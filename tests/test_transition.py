@@ -1,4 +1,4 @@
-from config import URL, name, new_email, email, password, incorrect_password
+from data import URL, name, new_email, email, password, incorrect_password
 from conftest import driver
 from locators import RegisterPageLocators, LoginPageLocators
 from conftest import register_user
